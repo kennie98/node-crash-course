@@ -1,17 +1,24 @@
-const EventEmitter = require('events');
+const EventEmitter = require("events");
 
 // Create class
-class MyEmitter extends EventEmitter {}
+class Person extends EventEmitter {
+  constructor(name) {
+    super();
+    this._name = name;
+  }
+
+  get name() {
+    return this._name;
+  }
+}
 
 // Init object
-const myEmitter = new MyEmitter();
+const ken = new Person("Ken");
 
 // Event listener
-myEmitter.on('event', () => console.log('Event Fired!'));
+ken.on("name", (n, m) =>
+  console.log(`My name is ${ken.name} and the sum is`, n + m)
+);
 
 // Init event
-myEmitter.emit('event');
-myEmitter.emit('event');
-myEmitter.emit('event');
-myEmitter.emit('event');
-myEmitter.emit('event');
+ken.emit("name", 2, 3);
